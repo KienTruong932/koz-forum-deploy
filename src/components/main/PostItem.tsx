@@ -10,6 +10,7 @@ import { toggleLike } from '@/actions/like.actions';
 import { Role } from '@/lib/enums';
 import ConfirmDialog from '@/components/common/ConfirmDialog';
 import 'ckeditor5/ckeditor5.css';
+import { useRouter } from "next/navigation";
 
 export default function PostItem({ post }: { post: any }) {
   const { data: session } = useSession();
@@ -20,11 +21,14 @@ export default function PostItem({ post }: { post: any }) {
   const [snackbar, setSnackbar] = useState({ open: false, message: '' });
   const [confirmOpen, setConfirmOpen] = useState(false);
 
+  const router = useRouter();
+
   const isModerator = session?.user?.role === Role.MODERATOR;
 
-  const authorName = post.author_id?.username || 'Unknown User';
+  const authorUsername = post.author_id?.username;
+  const authorDisplayName = post.author_id?.display_name;
   const avatar = post.author_id?.avatar;
-  const dateStr = post.created_at ? new Date(post.created_at).toLocaleString('vi-VN') : '';
+  const createdAt = new Date(post.created_at).toLocaleString('vi-VN');
 
   const isAuthor = session?.user?.id && post.author_id?._id && session.user.id === post.author_id._id.toString();
 
@@ -40,40 +44,40 @@ export default function PostItem({ post }: { post: any }) {
 
   const handleLike = async () => {
     if (!session?.user?.id) {
-       alert('Vui lòng đăng nhập để like bài viết!');
-       return;
+      router.push('/login');
+      return;
     }
     if (isLiking) return;
     setIsLiking(true);
-    
+
     const currentlyLiked = isLiked;
     setIsLiked(!currentlyLiked);
     setLikesCount((prev: number) => currentlyLiked ? prev - 1 : prev + 1);
-    
+
     try {
       await toggleLike(post._id);
     } catch (err) {
-       setIsLiked(currentlyLiked);
-       setLikesCount((prev: number) => currentlyLiked ? prev + 1 : prev - 1);
+      setIsLiked(currentlyLiked);
+      setLikesCount((prev: number) => currentlyLiked ? prev + 1 : prev - 1);
     } finally {
-       setIsLiking(false);
+      setIsLiking(false);
     }
   };
 
   return (
     <>
       <Box sx={{ gap: 5, display: 'flex', border: '1px solid', borderColor: 'divider', p: 3, m: 3, borderRadius: 2 }}>
-        <Box sx={{width: 120, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Avatar src={avatar} alt={authorName} sx={{ width: 64, height: 64, mb: 1.5 }} />
-          <Typography variant="subtitle1" color="secondary" sx={{ fontWeight: 'bold' }}>{authorName}</Typography>
-          <Typography variant="subtitle2" color="secondary">{authorName}</Typography>
+        <Box sx={{ width: 120, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Avatar src={avatar} alt={authorUsername} sx={{ width: 64, height: 64, mb: 1.5 }} />
+          <Typography variant="subtitle1" color="secondary" sx={{ fontWeight: 'bold' }}>{authorDisplayName}</Typography>
+          <Typography variant="subtitle2" color="secondary">@{authorUsername}</Typography>
         </Box>
 
         <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
           <Typography variant="caption" color="primary" sx={{ mb: 2, pb: 1.5, borderBottom: '1px solid', borderColor: 'divider' }}>
-            Đăng lúc: {dateStr}
+            Đăng lúc: {createdAt}
           </Typography>
-          
+
           {isEditing ? (
             <Box sx={{ mt: 2, mb: 2 }}>
               <PostEditor
@@ -84,7 +88,7 @@ export default function PostItem({ post }: { post: any }) {
               />
             </Box>
           ) : (
-            <Box 
+            <Box
               className="ck-content"
               sx={{ flexGrow: 1, lineHeight: 1.6, '& img': { maxWidth: '100%', height: 'auto' } }}
               dangerouslySetInnerHTML={{ __html: post.content }}

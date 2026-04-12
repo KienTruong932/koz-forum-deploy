@@ -33,7 +33,6 @@ export default function PostEditor({ initialContent = '', onSubmit, onCancel, bu
     setIsSubmitting(true);
     try {
       await onSubmit(content);
-      // If we are not cancelling (meaning it's a new post), reset content
       if (!onCancel) {
         setContent('');
       }
@@ -54,9 +53,9 @@ export default function PostEditor({ initialContent = '', onSubmit, onCancel, bu
             Hủy
           </Button>
         )}
-        <Button 
-          variant="contained" 
-          onClick={handleSubmit} 
+        <Button
+          variant="contained"
+          onClick={handleSubmit}
           disabled={isSubmitting || !content.trim()}
           startIcon={isSubmitting ? <CircularProgress size={20} /> : null}
         >

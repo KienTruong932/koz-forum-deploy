@@ -23,7 +23,7 @@ export async function getPostsWithLikes(threadId: string, page = 1, limit = 10) 
   const total = await Post.countDocuments({ thread_id: threadId });
 
   const posts = await Post.find({ thread_id: threadId })
-    .populate('author_id', 'username avatar')
+    .populate('author_id', 'username display_name avatar')
     .sort({ created_at: 1 })
     .skip(skip)
     .limit(limit)

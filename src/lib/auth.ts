@@ -12,6 +12,7 @@ declare module "next-auth" {
       id: string;
       role: Role;
       username: string;
+      display_name: string;
       avatar: string;
       status: UserStatus;
     } & DefaultSession["user"];
@@ -20,6 +21,7 @@ declare module "next-auth" {
   interface User {
     role: Role;
     username: string;
+    display_name: string;
     avatar: string;
     status: UserStatus;
   }
@@ -29,6 +31,7 @@ declare module "next-auth/jwt" {
   interface JWT {
     role: Role;
     username: string;
+    display_name: string;
     avatar: string;
     status: UserStatus;
   }
@@ -61,6 +64,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           name: user.display_name,
           email: user.email,
           username: user.username,
+          display_name: user.display_name,
           role: user.role,
           status: user.status,
           avatar: user.avatar,

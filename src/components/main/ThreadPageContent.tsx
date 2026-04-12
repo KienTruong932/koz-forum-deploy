@@ -157,7 +157,7 @@ export default function ThreadPageContent({ thread, posts, totalPages, currentPa
       <ConfirmDialog
         open={confirmDeleteOpen}
         title="Xóa chủ đề"
-        message="Hành động này sẽ XÓA VĨNH VIỄN chủ đề, toàn bộ bài đăng trong chủ đề, và các lượt thích tương ứng. Không thể hoàn tác. Bạn có chắc chắn?"
+        message="Hành động này sẽ XÓA VĨNH VIỄN Thread, toàn bộ bài đăng trong Thread, và các lượt thích tương ứng. Không thể hoàn tác. Bạn có chắc chắn?"
         confirmLabel="Tiến hành Xóa"
         onConfirm={handleDeleteThread}
         onCancel={() => setConfirmDeleteOpen(false)}

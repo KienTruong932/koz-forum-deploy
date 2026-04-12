@@ -41,7 +41,6 @@ export default function CreateThreadPage({ params }: { params: Promise<{ categor
     }
   }, [status, router]);
 
-  // Nếu bị hạn chế và session đã load — hiện snackbar, không cho tiếp tục
   useEffect(() => {
     if (status === 'authenticated' && session.user?.status === UserStatus.RESTRICTED) {
       setSnackbar({ open: true, message: 'Bạn đang bị hạn chế hoạt động' });
@@ -86,7 +85,7 @@ export default function CreateThreadPage({ params }: { params: Promise<{ categor
     if (editorInstance) {
       const pendingActions = editorInstance.plugins.get('PendingActions');
       if (pendingActions && pendingActions.hasAny) {
-        alert('Vui lòng đợi hình ảnh tải lên hoàn tất trước khi đăng bài!');
+        setSnackbar({ open: true, message: 'Vui lòng đợi hình ảnh tải lên hoàn tất trước khi đăng bài!' });
         return;
       }
     }

@@ -58,7 +58,6 @@ export default function HomeSidebar({
 }) {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-      {/* Hot Threads */}
       <Card variant="outlined" sx={{ borderRadius: 2 }}>
         <CardContent sx={{ pb: '12px !important' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
@@ -80,7 +79,6 @@ export default function HomeSidebar({
         </CardContent>
       </Card>
 
-      {/* Recent Threads */}
       <Card variant="outlined" sx={{ borderRadius: 2 }}>
         <CardContent sx={{ pb: '12px !important' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>

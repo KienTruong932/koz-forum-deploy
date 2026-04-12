@@ -21,7 +21,6 @@ const theme = createTheme({
   cssVariables: {
     colorSchemeSelector: "data-mui-color-scheme"
   },
-  defaultColorScheme: 'light',
   colorSchemes: {
     light: {
       palette: {
@@ -50,6 +49,7 @@ const theme = createTheme({
       },
     },
   },
+  defaultColorScheme: 'light',
   typography: {
     fontFamily: quicksand.style.fontFamily,
   },

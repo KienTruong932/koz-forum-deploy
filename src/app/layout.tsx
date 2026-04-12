@@ -25,8 +25,10 @@ export default async function RootLayout({
 
   return (
     <html lang="vi" suppressHydrationWarning>
+      <head>
+        <InitColorSchemeScript defaultMode="light" attribute="data-mui-color-scheme" />
+      </head>
       <body>
-        <InitColorSchemeScript defaultMode="light" />
         <SessionProvider>
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>

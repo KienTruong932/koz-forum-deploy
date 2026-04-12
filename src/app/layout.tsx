@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang="vi" suppressHydrationWarning>
       <body>
-        <InitColorSchemeScript attribute="class" />
+        <InitColorSchemeScript defaultMode="light" />
         <SessionProvider>
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>

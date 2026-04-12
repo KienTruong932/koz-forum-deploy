@@ -21,6 +21,7 @@ const theme = createTheme({
   cssVariables: {
     colorSchemeSelector: "class",
   },
+  defaultColorScheme: 'light',
   colorSchemes: {
     light: {
       palette: {

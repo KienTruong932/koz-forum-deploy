@@ -35,7 +35,7 @@ export default async function RootLayout({
       <body>
         <SessionProvider>
           <AppRouterCacheProvider>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme} modeStorageKey="koz-theme-mode">
               <CssBaseline />
               <Header user={user} sections={sections} />
               <main>{children}</main>

@@ -22,19 +22,6 @@ const theme = createTheme({
     colorSchemeSelector: "class",
   },
   colorSchemes: {
-    dark: {
-      palette: {
-        primary: { main: "#005ec9ff" },
-        secondary: { main: "#ffffffff" },
-        text: {
-          primary: "#ffffffff",
-        },
-        action: {
-          hover: "#ffffff00",
-        },
-        kozLogo: "rgb(0, 119, 255)",
-      },
-    },
     light: {
       palette: {
         primary: { main: "#1255a1ff" },
@@ -46,6 +33,19 @@ const theme = createTheme({
           hover: "#ffffff",
         },
         kozLogo: "#fff",
+      },
+    },
+    dark: {
+      palette: {
+        primary: { main: "#005ec9ff" },
+        secondary: { main: "#ffffffff" },
+        text: {
+          primary: "#ffffffff",
+        },
+        action: {
+          hover: "#ffffff00",
+        },
+        kozLogo: "rgb(0, 119, 255)",
       },
     },
   },

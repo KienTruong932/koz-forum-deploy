@@ -10,7 +10,7 @@ import { SessionProvider } from "next-auth/react";
 import { getSections } from "@/actions/section.actions";
 
 export const metadata: Metadata = {
-  title: "KOZ - Forum công nghệ hàng đầu VN",
+  title: "KOZ Forum",
   description: "Chia sẻ kiến thức bổ ích về công nghệ, kỹ thuật, máy tính,...",
 };
 

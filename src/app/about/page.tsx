@@ -2,13 +2,6 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-import type { Metadata } from 'next';
-import ComputerIcon from '@mui/icons-material/Computer';
-
-export const metadata: Metadata = {
-  title: 'Giới thiệu - KOZ Forum',
-  description: 'Tìm hiểu về KOZ Forum — cộng đồng công nghệ hàng đầu Việt Nam.',
-};
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -35,14 +28,14 @@ export default function AboutPage() {
       <Divider sx={{ mb: 4 }} />
 
       <Section title="KOZ là gì?">
-        KOZ (Knowledge-Over-Zero) là một diễn đàn công nghệ Việt Nam được xây dựng để kết nối những người yêu thích 
+        KOZ (Knowledge-Over-Zero) là một diễn đàn công nghệ Việt Nam được xây dựng để kết nối những người yêu thích
         công nghệ từ sinh viên IT, kỹ sư phần cứng, lập trình viên cho đến những người đam mê các món đồ công nghệ
         Tại đây, bạn có thể đặt câu hỏi, chia sẻ kinh nghiệm, thảo luận về các chủ đề về PC, lập trình,
       </Section>
 
       <Section title="Lịch sử ra đời">
         KOZ được tạo bởi sinh viên Trương Trung Kiên thuộc trường Đại Học An Giang với mong muốn tạo ra một nơi
-        trao đổi kỹ thuật chuyên sâu trên không gian mạng, đồng thời xây dựng một nền tảng mở, nơi mọi thảo luận đều 
+        trao đổi kỹ thuật chuyên sâu trên không gian mạng, đồng thời xây dựng một nền tảng mở, nơi mọi thảo luận đều
         được cộng đồng kiểm soá và đóng góp.
       </Section>
 

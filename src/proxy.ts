@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { auth } from './auth';
+import { NextResponse } from 'next/server';
+import { auth } from '@/lib/auth';
 
 export default auth((request) => {
   if (request.auth) {

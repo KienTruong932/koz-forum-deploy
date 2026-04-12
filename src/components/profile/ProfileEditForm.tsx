@@ -40,7 +40,6 @@ export default function ProfileEditForm({ user }: { user: any }) {
     setError("");
     setSuccess("");
     setLoading(true);
-    S;
 
     const formData = new FormData(e.currentTarget);
     const data = {

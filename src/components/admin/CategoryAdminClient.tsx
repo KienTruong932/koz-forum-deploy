@@ -78,10 +78,10 @@ export default function CategoryAdminClient({ categories, sections }: { categori
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell><Typography fontWeight="bold">Tên</Typography></TableCell>
-            <TableCell><Typography fontWeight="bold">Mô tả</Typography></TableCell>
-            <TableCell><Typography fontWeight="bold">Khu vực</Typography></TableCell>
-            <TableCell align="right"><Typography fontWeight="bold">Hành động</Typography></TableCell>
+            <TableCell><Typography sx={{ fontWeight: "bold" }}>Tên</Typography></TableCell>
+            <TableCell><Typography sx={{ fontWeight: "bold" }}>Mô tả</Typography></TableCell>
+            <TableCell><Typography sx={{ fontWeight: "bold" }}>Khu vực</Typography></TableCell>
+            <TableCell align="right"><Typography sx={{ fontWeight: "bold" }}>Hành động</Typography></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

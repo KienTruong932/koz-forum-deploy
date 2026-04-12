@@ -61,8 +61,8 @@ export default function SectionAdminClient({ sections }: { sections: any[] }) {
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell><Typography fontWeight="bold">Tên khu vực</Typography></TableCell>
-            <TableCell align="right"><Typography fontWeight="bold">Hành động</Typography></TableCell>
+            <TableCell><Typography sx={{ fontWeight: "bold" }}>Tên khu vực</Typography></TableCell>
+            <TableCell align="right"><Typography sx={{ fontWeight: "bold" }}>Hành động</Typography></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

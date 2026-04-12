@@ -26,7 +26,11 @@ export default async function RootLayout({
   return (
     <html lang="vi" suppressHydrationWarning>
       <head>
-        <InitColorSchemeScript defaultMode="light" attribute="data-mui-color-scheme" />
+        <InitColorSchemeScript
+          defaultMode="light"
+          attribute="data-mui-color-scheme"
+          modeStorageKey="koz-theme-mode"
+        />
       </head>
       <body>
         <SessionProvider>

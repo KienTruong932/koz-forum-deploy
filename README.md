@@ -107,6 +107,10 @@ npm run build
 npm run start
 ```
 
+### Truy cập trực tiếp bằng Vercel (Deployment)
+
+[koz-forum.vercel.app](https://koz-forum.vercel.app/)
+
 ---
 
 ## Cấu trúc thư mục chính

@@ -17,6 +17,7 @@ Theo dõi các bước dưới đây để thiết lập dự án trên máy tí
 ### 1. Clone dự án
 
 Mở terminal và chạy lệnh:
+
 ```bash
 git clone <url-cua-repo>
 cd koz-forum
@@ -25,6 +26,7 @@ cd koz-forum
 ### 2. Cài đặt các gói phụ thuộc
 
 Sử dụng npm để cài đặt tất cả các thư viện cần thiết:
+
 ```bash
 npm install
 ```
@@ -39,18 +41,18 @@ cp .env.example .env
 
 Mở file `.env` và điền đầy đủ các thông tin sau:
 
-| Biến | Mô tả |
-| :--- | :--- |
-| `AUTH_TRUST_HOST` | Đặt thành `true` nếu chạy trên môi trường production/vps. Ở local có thể để `false`. |
-| `MONGODB_URI` | Đường dẫn kết nối tới MongoDB của bạn (Local hoặc MongoDB Atlas). |
-| `NEXT_PUBLIC_APP_URL` | URL của ứng dụng (mặc định là `http://localhost:3000`). |
-| `JWT_SECRET` | Chuỗi bí mật bất kỳ để mã hóa JWT. |
-| `AUTH_SECRET` | Chuỗi bí mật cho Auth.js (có thể dùng lệnh `npx auth secret` để tạo). |
-| `AUTH_GOOGLE_ID` | Client ID từ Google Cloud Console (cho tính năng Đăng nhập bằng Google). |
-| `AUTH_GOOGLE_SECRET` | Client Secret từ Google Cloud Console. |
-| `CLOUDINARY_CLOUD_NAME` | Cloud Name từ tài khoản Cloudinary của bạn. |
-| `CLOUDINARY_API_KEY` | API Key từ Cloudinary. |
-| `CLOUDINARY_API_SECRET` | API Secret từ Cloudinary. |
+| Biến                    | Mô tả                                                                                |
+| :---------------------- | :----------------------------------------------------------------------------------- |
+| `AUTH_TRUST_HOST`       | Đặt thành `true` nếu chạy trên môi trường production/vps. Ở local có thể để `false`. |
+| `MONGODB_URI`           | Đường dẫn kết nối tới MongoDB của bạn (Local hoặc MongoDB Atlas).                    |
+| `NEXT_PUBLIC_APP_URL`   | URL của ứng dụng (mặc định là `http://localhost:3000`).                              |
+| `JWT_SECRET`            | Chuỗi bí mật bất kỳ để mã hóa JWT.                                                   |
+| `AUTH_SECRET`           | Chuỗi bí mật cho Auth.js (có thể dùng lệnh `npx auth secret` để tạo).                |
+| `AUTH_GOOGLE_ID`        | Client ID từ Google Cloud Console (cho tính năng Đăng nhập bằng Google).             |
+| `AUTH_GOOGLE_SECRET`    | Client Secret từ Google Cloud Console.                                               |
+| `CLOUDINARY_CLOUD_NAME` | Cloud Name từ tài khoản Cloudinary của bạn.                                          |
+| `CLOUDINARY_API_KEY`    | API Key từ Cloudinary.                                                               |
+| `CLOUDINARY_API_SECRET` | API Secret từ Cloudinary.                                                            |
 
 ### 4. Thiết lập Cơ sở dữ liệu (Database)
 
@@ -59,11 +61,12 @@ Mở file `.env` và điền đầy đủ các thông tin sau:
    ```bash
    npm run seed
    ```
-   *Lệnh này sẽ tạo các tài khoản mẫu (admin/member) và các khu vực/danh mục ban đầu.*
+   _Lệnh này sẽ tạo các tài khoản mẫu (admin/member) và các khu vực/danh mục ban đầu._
 
 ### 5. Lấy API Keys từ các dịch vụ
 
 #### Google OAuth (Đăng nhập Google)
+
 1. Truy cập [Google Cloud Console](https://console.cloud.google.com/).
 2. Tạo một Project mới.
 3. Vào "APIs & Services" > "Credentials".
@@ -72,6 +75,7 @@ Mở file `.env` và điền đầy đủ các thông tin sau:
 6. Copy Client ID và Client Secret vào file `.env`.
 
 #### Cloudinary (Upload ảnh)
+
 1. Đăng ký tài khoản tại [Cloudinary](https://cloudinary.com/).
 2. Trong Dashboard, bạn sẽ thấy **Cloud Name**, **API Key** và **API Secret**.
 3. Copy chúng vào file `.env`.
@@ -81,14 +85,19 @@ Mở file `.env` và điền đầy đủ các thông tin sau:
 ## Chạy ứng dụng
 
 ### Chế độ Phát triển (Development)
+
 Sử dụng lệnh sau để chạy với tính năng tự động tải lại khi sửa code:
+
 ```bash
 npm run dev
 ```
+
 Sau đó truy cập: [http://localhost:3000](http://localhost:3000)
 
 ### Chế độ Production (Build & Start)
+
 Để chạy ứng dụng một cách tối ưu nhất (như trên server thật):
+
 ```bash
 # Build ứng dụng
 npm run build

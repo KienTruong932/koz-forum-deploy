@@ -1,11 +1,10 @@
-"use server"
+"use server";
 
-import { notFound } from 'next/navigation';
-import { auth } from '@/lib/auth';
+import { notFound } from "next/navigation";
+import { auth } from "@/lib/auth";
 
-import connectToDatabase from '@/lib/mongodb';
-import Like from '@/models/Like';
-import { revalidatePath } from 'next/cache';
+import connectToDatabase from "@/lib/mongodb";
+import Like from "@/models/Like";
 
 export async function getLikesHelper(filter: any = {}) {
   await connectToDatabase();
@@ -22,13 +21,19 @@ export async function toggleLike(postId: string) {
   const session = await auth();
   if (!session?.user?.id) notFound();
 
-  const existingLike = await Like.findOne({ user_id: session.user.id, post_id: postId });
-  
+  const existingLike = await Like.findOne({
+    user_id: session.user.id,
+    post_id: postId,
+  });
+
   if (existingLike) {
     await Like.findByIdAndDelete(existingLike._id);
-    return { action: 'unliked', success: true };
+    return { action: "unliked", success: true };
   }
-  
-  const newLike = await Like.create({ user_id: session.user.id, post_id: postId });
-  return { action: 'liked', success: true };
+
+  const newLike = await Like.create({
+    user_id: session.user.id,
+    post_id: postId,
+  });
+  return { action: "liked", success: true };
 }

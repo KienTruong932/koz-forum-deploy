@@ -107,9 +107,15 @@ npm run build
 npm run start
 ```
 
-### Truy cập trực tiếp bằng Vercel (Deployment)
+### Hoặc: Truy cập trực tiếp bằng Vercel (Deployment)
 
 [koz-forum.vercel.app](https://koz-forum.vercel.app/)
+
+### Một số tài khoản mặc định dùng để test hệ thống (sau khi seed)
+- **ADMIN:** username: 'admin', password: 'koz123456'
+- **MODERATOR:** username: 'mod_phanhung', password: 'koz123456'
+- **MEMBER:** username: 'react_dev', password: 'koz123456'
+- **Hoặc:** Đăng nhập bằng tài khoản Google của bạn.
 
 ---
 

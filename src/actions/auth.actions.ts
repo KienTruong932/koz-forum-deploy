@@ -65,6 +65,10 @@ export async function login(formData: FormData) {
 
     await signIn("credentials", { username, password, redirect: true });
   } catch (error: any) {
+    const errorStr = String(error?.cause?.err?.message || error?.cause || error?.message || "");
+    if (errorStr.includes("BANNED_USER")) {
+      return { error: "Banned" };
+    }
     if (
       error.type === "CredentialsSignin" ||
       error.type === "CallbackRouteError"

@@ -21,6 +21,7 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import { createCategory, updateCategory, deleteCategory } from '@/actions/category.actions';
 import { useRouter } from 'next/navigation';
+import ConfirmDialog from '@/components/common/ConfirmDialog';
 
 export default function CategoryAdminClient({ categories, sections }: { categories: any[]; sections: any[] }) {
   const router = useRouter();
@@ -28,6 +29,9 @@ export default function CategoryAdminClient({ categories, sections }: { categori
   const [form, setForm] = useState({ name: '', description: '', section_id: '' });
   const [editId, setEditId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState({ name: '', description: '', section_id: '' });
+
+  // Dialog state
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const handleCreate = async () => {
     if (!form.name.trim()) return;
@@ -48,9 +52,10 @@ export default function CategoryAdminClient({ categories, sections }: { categori
     router.refresh();
   };
 
-  const handleDelete = async (id: string) => {
-    if (!confirm('Xóa danh mục này?')) return;
-    await deleteCategory(id);
+  const handleDeleteConfirm = async () => {
+    if (!deleteId) return;
+    await deleteCategory(deleteId);
+    setDeleteId(null);
     router.refresh();
   };
 
@@ -112,7 +117,7 @@ export default function CategoryAdminClient({ categories, sections }: { categori
                   </TableCell>
                   <TableCell align="right">
                     <IconButton size="small" onClick={() => handleEdit(c)}><EditIcon fontSize="small" /></IconButton>
-                    <IconButton size="small" color="error" onClick={() => handleDelete(c._id)}><DeleteIcon fontSize="small" /></IconButton>
+                    <IconButton size="small" color="error" onClick={() => setDeleteId(c._id)}><DeleteIcon fontSize="small" /></IconButton>
                   </TableCell>
                 </>
               )}
@@ -120,6 +125,15 @@ export default function CategoryAdminClient({ categories, sections }: { categori
           ))}
         </TableBody>
       </Table>
+
+      <ConfirmDialog
+        open={!!deleteId}
+        title="Xóa danh mục"
+        message="Bạn có chắc chắn muốn xóa danh mục này? Thao tác này không thể hoàn tác."
+        confirmLabel="Xóa ngay"
+        onConfirm={handleDeleteConfirm}
+        onCancel={() => setDeleteId(null)}
+      />
     </Box>
   );
 }

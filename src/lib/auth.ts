@@ -53,7 +53,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         const user = await User.findOne({ username }).lean();
 
-        if (!user || user.status === UserStatus.BANNED) return null;
+        if (!user) return null;
+        if (user.status === UserStatus.BANNED) throw new Error("BANNED_USER");
 
         const isMatch = await bcrypt.compare(password, user.password_hash);
 
@@ -77,7 +78,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       await connectToDatabase();
       const existingUser = await User.findOne({ email: user.email });
 
-      if (existingUser?.status === UserStatus.BANNED) return false;
+      if (existingUser?.status === UserStatus.BANNED) return "/login?error=Banned";
 
       if (account?.provider === "google") {
         if (!existingUser) {

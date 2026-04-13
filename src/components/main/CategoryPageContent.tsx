@@ -4,7 +4,17 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-import { Link, Container, Typography, Box, Button, Snackbar, Alert, Breadcrumbs } from "@mui/material";
+import {
+  Link as MuiLink,
+  Container,
+  Typography,
+  Box,
+  Button,
+  Snackbar,
+  Alert,
+  Breadcrumbs,
+} from "@mui/material";
+import NextLink from "next/link";
 import ThreadItem from "@/components/main/ThreadItem";
 import Pagination from "@/components/main/Pagination";
 import { UserStatus } from "@/lib/enums";
@@ -28,7 +38,7 @@ export default function CategoryPageContent({
   const handleCreateThread = async () => {
     const user = session?.user;
     if (!user) {
-      router.push(`/login`)
+      router.push(`/login`);
       return;
     }
 
@@ -57,15 +67,20 @@ export default function CategoryPageContent({
     <>
       <Container sx={{ my: 5 }}>
         <Breadcrumbs color="primary" sx={{ mb: 3 }}>
-          <Link href="/" style={{ textDecoration: "none" }}>
+          <MuiLink
+            component={NextLink}
+            href="/"
+            style={{ textDecoration: "none" }}
+          >
             Trang chủ
-          </Link>
-          <Link
+          </MuiLink>
+          <MuiLink
+            component={NextLink}
             href={`/categories/${category.slug}`}
             style={{ textDecoration: "none" }}
           >
             {category.name}
-          </Link>
+          </MuiLink>
         </Breadcrumbs>
 
         <Box

@@ -2,7 +2,26 @@
 
 import { useState } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { Box, TextField, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Select, MenuItem, Snackbar, Alert, Typography, InputAdornment } from "@mui/material";
+import {
+  Box,
+  TextField,
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Select,
+  MenuItem,
+  Snackbar,
+  Alert,
+  Typography,
+  InputAdornment,
+  Link as MuiLink,
+} from "@mui/material";
+import NextLink from "next/link";
 import Pagination from "@/components/main/Pagination";
 import ConfirmDialog from "@/components/common/ConfirmDialog";
 import {
@@ -42,7 +61,7 @@ export default function UserManagementTable({
     open: false,
     title: "",
     message: "",
-    action: async () => { },
+    action: async () => {},
   });
 
   const handleSearch = (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -165,9 +184,9 @@ export default function UserManagementTable({
 
       <TableContainer component={Paper} elevation={3}>
         <Table>
-          <TableHead sx={{ backgroundColor: "action.hover" }}>
+          <TableHead>
             <TableRow>
-              <TableCell>Username</TableCell>
+              <TableCell>Tên người dùng</TableCell>
               <TableCell>Email</TableCell>
               <TableCell>Tên hiển thị</TableCell>
               <TableCell>Vai trò</TableCell>
@@ -178,13 +197,17 @@ export default function UserManagementTable({
             {users.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={5} align="center" sx={{ py: 3 }}>
-                  Không tìm thấy người dùng nào.
+                  Chưa có người dùng nào trong hệ thống.
                 </TableCell>
               </TableRow>
             ) : (
               users.map((u) => (
-                <TableRow key={u._id}>
-                  <TableCell>@{u.username}</TableCell>
+                <TableRow key={u._id.toString()}>
+                  <TableCell>
+                    <MuiLink href={`/profile/${u.username}`} underline="hover">
+                      @{u.username}
+                    </MuiLink>
+                  </TableCell>
                   <TableCell>{u.email}</TableCell>
                   <TableCell>{u.display_name}</TableCell>
                   <TableCell>

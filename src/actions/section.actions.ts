@@ -2,6 +2,7 @@
 
 import connectToDatabase from '@/lib/mongodb';
 import Section from '@/models/Section';
+import Category from '@/models/Category';
 
 export async function getSections() {
   await connectToDatabase();
@@ -21,6 +22,13 @@ export async function createSection(name: string) {
 export async function updateSection(id: string, name: string) {
   await connectToDatabase();
   await Section.findByIdAndUpdate(id, { name });
+  revalidatePath('/admin/sections');
+  revalidatePath('/');
+}
+
+export async function deleteSection(id: string) {
+  await connectToDatabase();
+  await Section.findByIdAndDelete(id);
   revalidatePath('/admin/sections');
   revalidatePath('/');
 }

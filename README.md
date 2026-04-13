@@ -122,13 +122,14 @@ npm run start
 ## Cấu trúc thư mục chính
 
 - `src/app`: Chứa các route (trang) và API của ứng dụng.
+- `src/proxy.ts`: Cấu hình proxy (middleware) khi xác thực người dùng.
 - `src/actions`: Chứa các Server Actions (logic xử lý backend).
 - `src/components`:
   - `main/`: Các component chính của diễn đàn.
   - `admin/`: Các component dành cho trang quản trị.
   - `common/`: Các component dùng chung (Dialog, Toggle...).
   - `layout/`: Các component layout (Header, Footer...).
-- `src/lib`: Chứa các cấu hình library (auth, mongodb, theme, proxy).
+- `src/lib`: Chứa các cấu hình library (auth, mongodb, theme).
 - `src/models`: Định nghĩa các Mongoose Schema.
 - `src/utils`: Các hàm tiện ích bổ trợ.
 

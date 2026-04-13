@@ -16,21 +16,19 @@ import MuiLink from "@mui/material/Link";
 import NextLink from "next/link";
 import Divider from "@mui/material/Divider";
 import CircularProgress from "@mui/material/CircularProgress";
+import Paper from "@mui/material/Paper";
 import { register } from "@/actions/auth.actions";
 import { Gender } from "@/lib/enums";
 
 export default function RegisterPage() {
-  const router = useRouter();
-  const [status, setStatus] = useState<{
-    success?: boolean;
-    message?: string;
-  } | null>(null);
+  const [status, setStatus] = useState<{ success?: boolean; message?: string } | null>(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
+    setStatus(null);
 
     const formData = new FormData(e.currentTarget);
     const result = await register(formData);
@@ -41,28 +39,48 @@ export default function RegisterPage() {
     } else {
       setStatus({
         success: true,
-        message: "Đăng ký thành công! Đang chuyển hướng về đăng nhập...",
+        message: "Đăng ký thành công! Đang chuyển hướng...",
       });
       setTimeout(() => {
-        router.push("/login");
-      }, 3000);
+        window.location.href = "/login";
+      }, 2000);
     }
   }
 
   return (
-    <>
-      <Container maxWidth="xs" sx={{ py: 8 }}>
+    <Container maxWidth="sm" sx={{ py: 8 }}>
+      <Paper
+        elevation={3}
+        sx={{
+          p: 4,
+          display: "flex",
+          flexDirection: "column",
+          borderRadius: 4,
+          backdropFilter: "blur(10px)",
+          border: "1px solid",
+          borderColor: "divider",
+          background: (theme) =>
+            theme.palette.mode === "dark"
+              ? "rgba(30, 30, 35, 0.8)"
+              : "rgba(255, 255, 255, 0.9)",
+        }}
+      >
+        {/* Header đồng bộ Login */}
         <Box sx={{ textAlign: "center", mb: 3 }}>
-          <Typography variant="h5" sx={{ fontWeight: 700 }} color="primary">
+          <Typography
+            variant="h5"
+            sx={{ fontWeight: 800, letterSpacing: "-0.5px" }}
+            color="primary"
+          >
             Đăng ký tài khoản KOZ
           </Typography>
-          <Typography variant="body2" color="secondary" sx={{ mt: 0.5 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
             Forum chất lượng dành cho anh em đam mê công nghệ
           </Typography>
         </Box>
 
         {status && (
-          <Alert severity={status.success ? "success" : "error"} sx={{ mb: 2 }}>
+          <Alert severity={status.success ? "success" : "error"} sx={{ mb: 2, borderRadius: 2 }}>
             {status.message}
           </Alert>
         )}
@@ -71,8 +89,9 @@ export default function RegisterPage() {
           component="form"
           onSubmit={handleSubmit}
           noValidate
-          sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+          sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}
         >
+          {/* 1. Email */}
           <TextField
             label="Email"
             name="email"
@@ -80,8 +99,10 @@ export default function RegisterPage() {
             autoComplete="email"
             required
             fullWidth
-            size="small"
+            sx={{ "& .MuiOutlinedInput-root": { borderRadius: 2 } }}
           />
+
+          {/* 2. Username */}
           <TextField
             label="Tên người dùng"
             name="username"
@@ -89,8 +110,10 @@ export default function RegisterPage() {
             autoFocus
             required
             fullWidth
-            size="small"
+            sx={{ "& .MuiOutlinedInput-root": { borderRadius: 2 } }}
           />
+
+          {/* 3. Password */}
           <TextField
             label="Mật khẩu"
             name="password"
@@ -98,96 +121,113 @@ export default function RegisterPage() {
             autoComplete="new-password"
             required
             fullWidth
-            size="small"
+            sx={{ "& .MuiOutlinedInput-root": { borderRadius: 2 } }}
             slotProps={{
               input: {
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => setShowPassword(!showPassword)}
-                      edge="end"
-                    >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 ),
               },
             }}
           />
+
+          {/* 4. Password Confirm */}
           <TextField
             label="Nhập lại mật khẩu"
             name="passwordConfirm"
             type={showPassword ? "text" : "password"}
             required
             fullWidth
-            size="small"
+            sx={{ "& .MuiOutlinedInput-root": { borderRadius: 2 } }}
             slotProps={{
               input: {
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => setShowPassword(!showPassword)}
-                      edge="end"
-                    >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 ),
               },
             }}
           />
+
+          {/* 5. Giới tính */}
           <TextField
             select
             label="Giới tính"
             name="gender"
             defaultValue={Gender.OTHER}
             fullWidth
-            size="small"
-            slotProps={{ select: { native: true } }}
+            sx={{ "& .MuiOutlinedInput-root": { borderRadius: 2 } }}
+            slotProps={{
+              select: { native: true },
+            }}
           >
             <option value={Gender.MALE}>Nam</option>
             <option value={Gender.FEMALE}>Nữ</option>
             <option value={Gender.OTHER}>Khác</option>
           </TextField>
+
+          {/* 6. Số điện thoại */}
           <TextField
             label="Số điện thoại"
             name="phonenumber"
             autoComplete="tel"
             fullWidth
-            size="small"
+            sx={{ "& .MuiOutlinedInput-root": { borderRadius: 2 } }}
           />
+
           <Button
             type="submit"
             variant="contained"
             color="primary"
             fullWidth
+            size="large"
             disabled={loading}
-            startIcon={
-              loading ? <CircularProgress size={16} color="inherit" /> : null
-            }
+            sx={{
+              borderRadius: 2,
+              py: 1.5,
+              fontWeight: 700,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+              textTransform: "none",
+            }}
+            startIcon={loading ? <CircularProgress size={20} color="inherit" /> : null}
           >
             {loading ? "Đang tạo tài khoản..." : "Đăng ký"}
           </Button>
         </Box>
 
-        <Divider sx={{ my: 3 }} />
+        <Divider sx={{ my: 4 }}>
+          <Typography variant="caption" color="text.secondary" sx={{ px: 1 }}>
+            HOẶC
+          </Typography>
+        </Divider>
 
         <Typography
           variant="body2"
-          sx={{ textAlign: "center" }}
-          color="secondary"
+          sx={{ textAlign: "center", fontWeight: 500 }}
+          color="text.secondary"
         >
-          Đã có tài khoản?
+          Đã có tài khoản?{" "}
           <MuiLink
             component={NextLink}
             href="/login"
             color="primary"
-            sx={{ ml: 1 }}
+            sx={{
+              fontWeight: 700,
+              textDecoration: "none",
+              "&:hover": { textDecoration: "underline" }
+            }}
           >
             Đăng nhập
           </MuiLink>
         </Typography>
-      </Container>
-    </>
+      </Paper>
+    </Container>
   );
 }

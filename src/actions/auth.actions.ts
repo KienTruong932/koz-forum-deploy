@@ -63,7 +63,8 @@ export async function login(formData: FormData) {
   try {
     const { username, password } = getFormData(formData);
 
-    await signIn("credentials", { username, password, redirect: true });
+    await signIn("credentials", { username, password, redirect: false });
+    return { success: true };
   } catch (error: any) {
     const errorStr = String(error?.cause?.err?.message || error?.cause || error?.message || "");
     if (errorStr.includes("BANNED_USER")) {

@@ -46,8 +46,7 @@ function LoginForm() {
       setError(result.error);
       setLoading(false);
     } else {
-      router.push("/");
-      router.refresh();
+      window.location.href = "/";
     }
   }
 
@@ -70,10 +69,6 @@ function LoginForm() {
           display: "flex",
           flexDirection: "column",
           borderRadius: 4,
-          background: (theme) =>
-            theme.palette.mode === "dark"
-              ? "rgba(30, 30, 35, 0.8)"
-              : "rgba(255, 255, 255, 0.9)",
           backdropFilter: "blur(10px)",
           border: "1px solid",
           borderColor: "divider",

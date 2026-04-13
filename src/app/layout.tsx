@@ -11,7 +11,8 @@ import { getSections } from "@/actions/section.actions";
 
 export const metadata: Metadata = {
   title: "KOZ Forum",
-  description: "Chia sẻ kiến thức bổ ích về công nghệ, kỹ thuật, máy tính,...",
+  description:
+    "Cộng đồng chia sẻ kiến thức bổ ích về công nghệ, kỹ thuật, máy tính,... và hơn thế nữa",
 };
 
 export default async function RootLayout({

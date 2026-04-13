@@ -49,7 +49,7 @@ export default function CategoryPageContent({
 
     const userLastThread = await getUserLastThread(user.id);
     if (userLastThread) {
-      const lastThreadTime = Date.now() - userLastThread.created_at.getTime();
+      const lastThreadTime = Date.now() - new Date(userLastThread.created_at).getTime();
       const cooldown = 5 * 60 * 1000;
       if (lastThreadTime < cooldown) {
         const remainingTime = Math.ceil((cooldown - lastThreadTime) / 1000);

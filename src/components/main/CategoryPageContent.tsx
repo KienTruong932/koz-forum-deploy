@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -106,7 +106,7 @@ export default function CategoryPageContent({
             </Typography>
           </Box>
           <Button variant="contained" onClick={handleCreateThread}>
-            Tạo bài viết mới
+            Tạo bài đăng mới
           </Button>
         </Box>
 

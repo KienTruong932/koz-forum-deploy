@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { Container, Typography, Box, Card, CardContent, Link as MuiLink, Avatar } from '@mui/material';
 import NextLink from 'next/link';
 
@@ -54,11 +53,11 @@ export default function SearchPageContent({
                     }}
                     dangerouslySetInnerHTML={{ __html: post.content }}
                   />
-                  
+
                   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 2 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                       <Avatar src={author?.avatar} sx={{ width: 24, height: 24 }} />
-                      <Typography variant="body2" sx={{fontWeight: 'bold'}}>
+                      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
                         {author?.username || 'Người dùng ẩn danh'}
                       </Typography>
                       <Typography variant="caption" color="text.secondary">

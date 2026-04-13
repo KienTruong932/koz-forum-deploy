@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { Quicksand } from "next/font/google";
 import { createTheme } from "@mui/material/styles";
 

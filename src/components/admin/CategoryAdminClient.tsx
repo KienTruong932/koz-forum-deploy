@@ -30,7 +30,6 @@ export default function CategoryAdminClient({ categories, sections }: { categori
   const [editId, setEditId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState({ name: '', description: '', section_id: '' });
 
-  // Dialog state
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const handleCreate = async () => {
@@ -71,7 +70,6 @@ export default function CategoryAdminClient({ categories, sections }: { categori
 
   return (
     <Box>
-      {/* Add form */}
       <Box sx={{ display: 'flex', gap: 2, mb: 4, flexWrap: 'wrap' }}>
         <TextField label="Tên danh mục" size="small" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
         <TextField label="Mô tả" size="small" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} sx={{ flexGrow: 1 }} />
@@ -79,7 +77,6 @@ export default function CategoryAdminClient({ categories, sections }: { categori
         <Button variant="contained" onClick={handleCreate}>Thêm</Button>
       </Box>
 
-      {/* Table */}
       <Table size="small">
         <TableHead>
           <TableRow>

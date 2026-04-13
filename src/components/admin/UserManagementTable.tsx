@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
@@ -61,7 +61,7 @@ export default function UserManagementTable({
     open: false,
     title: "",
     message: "",
-    action: async () => {},
+    action: async () => { },
   });
 
   const handleSearch = (e: React.SubmitEvent<HTMLFormElement>) => {

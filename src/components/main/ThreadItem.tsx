@@ -1,5 +1,6 @@
-"use client";
+'use client';
 import { Box, Typography, Link as MuiLink } from "@mui/material";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import NextLink from "next/link";
 export default function ThreadItem({ thread }: { thread: any }) {
   const authorName = thread.author_id.username;
@@ -16,6 +17,7 @@ export default function ThreadItem({ thread }: { thread: any }) {
           {thread.title}{" "}
         </MuiLink>
       </Typography>
+
       <Typography variant="subtitle2" color="secondary">
         Tạo bởi: <strong>{authorName}</strong> | Lượt xem: {thread.view_count}
       </Typography>

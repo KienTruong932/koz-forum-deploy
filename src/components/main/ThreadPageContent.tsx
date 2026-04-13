@@ -9,6 +9,7 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import NextLink from "next/link";
 import PostItem from "@/components/main/PostItem";
 import PostEditor from "@/components/main/PostEditor";
@@ -93,7 +94,7 @@ export default function ThreadPageContent({
       setThreadStatus((result as any).status);
       setSnackbar({
         open: true,
-        message: isHidden ? "Đã hiện chủ đề." : "Đã ẩn chủ đề.",
+        message: isHidden ? "Đã hiện bài đăng." : "Đã ẩn bài đăng.",
         severity: "success",
       });
     }
@@ -135,44 +136,60 @@ export default function ThreadPageContent({
         <Typography color="text.primary">{thread.slug}</Typography>
       </Breadcrumbs>
 
-      <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 1 }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 2,
+          mb: 1,
+        }}
+      >
         <Typography color="secondary" variant="h4" sx={{ fontWeight: "bold" }}>
           {thread.title}
         </Typography>
-        {isModOrAdmin && (
-          <Button
-            variant="outlined"
-            size="small"
-            color={isLocked ? "success" : "warning"}
-            onClick={handleToggleLock}
-          >
-            {isLocked ? "Mở khóa" : "Khóa chủ đề"}
-          </Button>
-        )}
-        {isAdmin && (
-          <>
+        <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+          {isModOrAdmin && (
             <Button
               variant="outlined"
               size="small"
-              color={isHidden ? "success" : "secondary"}
-              onClick={handleToggleHide}
+              color={isLocked ? "success" : "warning"}
+              onClick={handleToggleLock}
             >
-              {isHidden ? "Hiện chủ đề" : "Ẩn chủ đề"}
+              {isLocked ? "Mở khóa" : "Khóa bài đăng"}
             </Button>
-            <Button
-              variant="outlined"
-              size="small"
-              color="error"
-              onClick={() => setConfirmDeleteOpen(true)}
-            >
-              Xóa (Admin)
-            </Button>
-          </>
-        )}
+          )}
+          {isAdmin && (
+            <>
+              <Button
+                variant="outlined"
+                size="small"
+                color={isHidden ? "success" : "secondary"}
+                onClick={handleToggleHide}
+              >
+                {isHidden ? "Hiện bài đăng" : "Ẩn bài đăng"}
+              </Button>
+              <Button
+                variant="contained"
+                size="small"
+                color="error"
+                onClick={() => setConfirmDeleteOpen(true)}
+              >
+                Xóa
+              </Button>
+            </>
+          )}
+        </Box>
       </Box>
       <Typography color="secondary" variant="subtitle1" sx={{ mb: 3 }}>
-        {thread.author_id.username}
+        @{thread.author_id.username}
       </Typography>
+      <Box sx={{ display: "flex", gap: 1 }}>
+        <VisibilityIcon color="action" sx={{ mt: 0.3 }} />
+        <Typography color="secondary" variant="subtitle1" sx={{ mb: 3 }}>
+          Lượt xem: {thread.view_count}
+        </Typography>
+      </Box>
 
       <Box>
         {posts.map((post) => (
@@ -203,7 +220,7 @@ export default function ThreadPageContent({
           }}
         >
           <Typography variant="h6" sx={{ mb: 2 }}>
-            Trả lời chủ đề
+            Trả lời bài đăng
           </Typography>
           <PostEditor onSubmit={handleCreatePost} />
         </Box>
@@ -215,7 +232,7 @@ export default function ThreadPageContent({
           <MuiLink href="/login" component={NextLink}>
             đăng nhập
           </MuiLink>{" "}
-          để trả lời chủ đề này.
+          để trả lời bài đăng này.
         </Typography>
       )}
 

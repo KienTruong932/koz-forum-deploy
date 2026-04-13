@@ -1,6 +1,7 @@
 'use client';
 
-import { Box, Avatar, Typography, Button, IconButton, Snackbar, Alert } from '@mui/material';
+import { Box, Avatar, Typography, Button, IconButton, Snackbar, Alert, Link as MuiLink } from '@mui/material';
+import NextLink from 'next/link';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
@@ -68,9 +69,15 @@ export default function PostItem({ post }: { post: any }) {
     <>
       <Box sx={{ gap: 5, display: 'flex', border: '1px solid', borderColor: 'divider', p: 3, m: 3, borderRadius: 2 }}>
         <Box sx={{ width: 120, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Avatar src={avatar} alt={authorUsername} sx={{ width: 64, height: 64, mb: 1.5 }} />
-          <Typography variant="subtitle1" color="secondary" sx={{ fontWeight: 'bold' }}>{authorDisplayName}</Typography>
-          <Typography variant="subtitle2" color="secondary">@{authorUsername}</Typography>
+          <MuiLink component={NextLink} href={`/profile/${authorUsername}`} style={{ textDecoration: "none" }}>
+            <Avatar src={avatar} alt={authorUsername} sx={{ width: 64, height: 64, mb: 1.5 }} />
+          </MuiLink>
+          <MuiLink component={NextLink} href={`/profile/${authorUsername}`} style={{ textDecoration: "none" }}>
+            <Typography variant="subtitle1" color="secondary" sx={{ fontWeight: 'bold' }}>{authorDisplayName}</Typography>
+          </MuiLink>
+          <MuiLink component={NextLink} href={`/profile/${authorUsername}`} style={{ textDecoration: "none" }}>
+            <Typography variant="subtitle2" color="secondary">@{authorUsername}</Typography>
+          </MuiLink>
         </Box>
 
         <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
@@ -104,7 +111,7 @@ export default function PostItem({ post }: { post: any }) {
                 </>
               )}
               {isModerator && !isAuthor && !isEditing && (
-                <Button size="small" variant="outlined" color="error" onClick={() => setConfirmOpen(true)}>Xóa (Mod)</Button>
+                <Button size="small" variant="outlined" color="error" onClick={() => setConfirmOpen(true)}>Xóa</Button>
               )}
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>

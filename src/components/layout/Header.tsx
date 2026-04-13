@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import NextLink from "next/link";
 import { AppBar, Toolbar, Button, Box, TextField, InputAdornment, Link as MuiLink, Menu, MenuItem } from "@mui/material";
@@ -55,7 +55,6 @@ export default function Header({ user, sections = [] }: { user: any; sections?: 
             Trang chủ
           </Button>
 
-          {/* Khu vực dropdown */}
           <Button
             size="large"
             sx={{ color: "kozLogo" }}

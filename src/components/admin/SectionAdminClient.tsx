@@ -25,7 +25,6 @@ export default function SectionAdminClient({ sections }: { sections: any[] }) {
   const [editId, setEditId] = useState<string | null>(null);
   const [editName, setEditName] = useState('');
 
-  // Dialog state
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const handleCreate = async () => {

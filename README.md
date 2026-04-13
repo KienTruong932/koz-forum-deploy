@@ -3,7 +3,8 @@
 ## Giới thiệu về công nghệ sử dụng
 
 - **Frontend**: Next.js 16 (App Router), React 19, Material UI (MUI) 9, CKEditor 5.
-- **Backend**: Next.js Server Actions, NextAuth.js v5 (Auth.js).
+- **Backend**: Next.js Server Actions.
+- **Authencation**: NextAuth.js v5 (Auth.js), JWT, Google OAuth.
 - **Database**: MongoDB với Mongoose.
 - **Lưu trữ hình ảnh**: Cloudinary.
 - **Ngôn ngữ**: TypeScript.
